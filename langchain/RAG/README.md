@@ -8,23 +8,12 @@ RAG is a technique that **combines information retrieval with language generatio
 
 ## RAG Components
 
-### [Document Loader](https://reference.langchain.com/python/langchain-community/document-loaders)
+```mermaid
+graph LR
+    A[RAG Components]
 
-Document loaders are LangChain components that load data from different sources into a standardized format (usually `Document` objects). These `Document` objects are then used for chunking, embedding, retrieval, and generation.
-
-```python
-Document(
-    page_content="The actual text content",
-    metadata={"source": "filename.pdf", ...}
-)
+    A --> B[Document Loaders]
+    A --> C[Text Splitters]
+    A --> D[Vector Database]
+    A --> E[Retrievers]
 ```
-
-**TextLoader:** Loads plain text files. Ideal for chat logs, scraped text, transcripts, code snippets, or any other plain text data.
-
-**PyPDFLoader:** Loads content from PDF files and converts each page into a `Document` object. It uses the PyPDF library under the hood. It is not suitable for scanned PDFs or PDFs with complex layouts.
-
-**DirectoryLoader:** Loads documents from a directory.
-
-**WebBaseLoader:** Loads content from web pages. It uses BeautifulSoup under the hood to parse HTML and extract visible text. Best for blogs, news articles, or other public websites with primarily text-based, static content.
-
-**CSVLoader:** Loads data from CSV files, creating one `Document` object per row.
